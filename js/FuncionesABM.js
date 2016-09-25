@@ -1,3 +1,32 @@
+$(document).ready(function(){
+	
+	MostrarGrilla();
+	
+}); //muestra grilla toto el tiempo
+
+
+
+function MostrarGrilla()
+{
+	var pagina= "./nexo.php";
+	$.ajax({
+		type:'POST',
+		url:pagina,
+		data: {queHacer:"mostrarLista"},
+		datatype:"html",
+		async: true
+	})
+	.then(
+	function(exito){
+		$("#GrillaPersonas").html(exito)
+	},
+	function(error){
+		alert("algo pasa");
+	});
+
+}
+
+
 function AgregarPersona()
 { 
 	
@@ -16,7 +45,8 @@ function AgregarPersona()
    $.ajax({url:pagina,type:"post",data:{queHacer:"Agregar",persona:persona}})
    .then(function(exito){
    
-   	alert(exito);
+   //	alert(exito);
+   	alert("Ingresado Exitosamente!");
 	   	$("#principal").html(exito);
    },function(error){
 
